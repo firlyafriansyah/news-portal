@@ -1,5 +1,5 @@
-import {Button, Flex, Modal} from "antd";
-import type {Article} from "@/domain/news/Article.ts";
+import { Button, Flex, Modal } from "antd";
+import type {Article} from "@/domain/news/article.ts";
 import { Typography } from 'antd';
 
 const { Text } = Typography;

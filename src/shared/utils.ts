@@ -1,8 +1,7 @@
 export function FormatDate(isoString: string): string {
   const date = new Date(isoString);
 
-  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+  const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
   const month = months[date.getUTCMonth()];
   const day = date.getUTCDate();

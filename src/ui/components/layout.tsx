@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Layout} from "antd";
+import { Layout } from "antd";
 import CustomHeader from "@/ui/components/header.tsx";
 
 const { Content } = Layout;

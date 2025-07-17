@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import type {Article} from '@/domain/news/Article';
-import { NewsApiRepository } from '@/infrastructure/news/NewsApiRepository';
-import { NewsServiceImpl } from '@/application/news/NewsServiceImpl';
-import {useSearchStore} from "@/ui/stores/searchStore.ts";
-import {SearchNewsApiRepository} from "@/infrastructure/news/SearchNewsApiRepository.ts";
+import type {Article} from '@/domain/news/article.ts';
+import { NewsApiRepository } from '@/infrastructure/news/news-api-repository.ts';
+import { NewsServiceImpl } from '@/application/news/news-service-impl.ts';
+import { useSearchStore } from "@/ui/stores/search-store.ts";
+import { SearchNewsApiRepository } from "@/infrastructure/news/search-news-api-repository.ts";
 
 export const useNews = (page: number, pageSize: number) => {
   const { search } = useSearchStore();

@@ -1,4 +1,4 @@
-import type { Article } from '@/domain/news/Article';
+import type { Article } from '@/domain/news/article.ts';
 
 export const SearchNewsApiRepository = (search: string, page: number, pageSize: number) => {
   const fetchNews = async (): Promise<{ total: number, data: Article[] }> => {

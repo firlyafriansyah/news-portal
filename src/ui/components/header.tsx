@@ -1,7 +1,7 @@
-import {Button, Flex, type GetProps, Input, type InputRef, Layout, Tooltip, Typography} from "antd";
-import {SearchOutlined} from "@ant-design/icons";
 import * as React from "react";
-import {useSearchStore} from "@/ui/stores/searchStore.ts";
+import { Button, Flex, type GetProps, Input, type InputRef, Layout, Tooltip, Typography } from "antd";
+import { SearchOutlined } from "@ant-design/icons";
+import { useSearchStore } from "@/ui/stores/search-store.ts";
 
 type SearchProps = GetProps<typeof Input.Search>;
 

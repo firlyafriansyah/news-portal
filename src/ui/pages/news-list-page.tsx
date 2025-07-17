@@ -1,10 +1,10 @@
 import * as React from 'react';
-import {Button, Flex, List, Typography} from 'antd';
-import {useNews} from '../hooks/useNews';
+import { Button, Flex, List, Typography } from 'antd';
+import { useNews } from '../hooks/use-news.ts';
 import MainLayout from "@/ui/components/layout.tsx";
-import {FormatDate} from "@/shared/utils.ts";
+import { FormatDate } from "@/shared/utils.ts";
 import NewsModal from "@/ui/components/news-modal.tsx";
-import type {Article} from "@/domain/news/Article.ts";
+import type { Article } from "@/domain/news/article.ts";
 
 const { Text } = Typography;
 
@@ -36,7 +36,7 @@ export const NewsListPage = () => {
             <List.Item
               key={item.title}
               actions={[
-                <p>Published Date: {item.publishedAt && FormatDate(item.publishedAt)}</p>
+                <p key="published-date">Published Date: {item.publishedAt && FormatDate(item.publishedAt)}</p>
               ]}
               extra={item.urlToImage ? (
                 <img
