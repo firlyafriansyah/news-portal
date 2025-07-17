@@ -66,8 +66,7 @@ export default function CustomHeader() {
             />
           )}
         </Flex>
-        <Title level={4} style={{ width: '33%', textAlign: 'center', margin: 0, fontFamily: 'cursive' }}>News Portal - Eigen Tri Mathema</Title>
-        <div style={{ width: '33%', }} />
+        <Title level={4} style={{ width: '66%', textAlign: 'left', margin: 0, fontFamily: 'cursive' }}>News Portal - Eigen Tri Mathema</Title>
       </Flex>
     </Header>
   )

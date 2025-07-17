@@ -3,7 +3,7 @@ import type { Article } from '@/domain/news/Article';
 
 export function NewsServiceImpl(repository: { fetchNews: any }): NewsService {
   return {
-    async getNews(): Promise<Article[]> {
+    async getNews(): Promise<{ total: number, data: Article[] }> {
       return repository.fetchNews();
     }
   };

@@ -1,5 +1,5 @@
 import type {Article} from './Article';
 
 export interface NewsService {
-  getNews(): Promise<Article[]>;
+  getNews(): Promise<{ total: number, data: Article[] }>;
 }

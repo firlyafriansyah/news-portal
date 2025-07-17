@@ -1,48 +1,84 @@
-import {Button, List} from 'antd';
+import * as React from 'react';
+import {Button, Flex, List, Typography} from 'antd';
 import {useNews} from '../hooks/useNews';
 import MainLayout from "@/ui/components/layout.tsx";
 import {FormatDate} from "@/shared/utils.ts";
+import NewsModal from "@/ui/components/news-modal.tsx";
+import type {Article} from "@/domain/news/Article.ts";
+
+const { Text } = Typography;
 
 export const NewsListPage = () => {
-  const news = useNews();
+  const [pagination, setPagination] = React.useState({ page: 1, pageSize: 5 });
+  const [selectedData, setSelectedData] = React.useState<Article>({} as Article);
+  const [showNewsDetail, setShowNewsDetail] = React.useState<boolean>(false);
+
+  const { news, total } = useNews(pagination.page, pagination.pageSize)
 
   return (
-    <MainLayout>
-      <List
-        itemLayout="vertical"
-        size="large"
-        pagination={news.length ? {
-          onChange: (page) => {
-            console.log(page);
-          },
-          pageSize: 5,
-        } : false}
-        dataSource={news}
-        renderItem={(item) => (
-          <List.Item
-            key={item.title}
-            actions={[
-              <p>Published Date: {item.publishedAt && FormatDate(item.publishedAt)}</p>
-            ]}
-            extra={
-              <img
-                width={272}
-                alt="logo"
-                src={item.urlToImage}
+    <>
+      <MainLayout>
+        <List
+          itemLayout="vertical"
+          size="large"
+          pagination={news.length ? {
+            onChange: (page) => {
+              setPagination({
+                ...pagination,
+                page,
+              })
+            },
+            total: total,
+            pageSize: pagination.pageSize,
+          } : false}
+          dataSource={news}
+          renderItem={(item) => (
+            <List.Item
+              key={item.title}
+              actions={[
+                <p>Published Date: {item.publishedAt && FormatDate(item.publishedAt)}</p>
+              ]}
+              extra={item.urlToImage ? (
+                <img
+                  width={272}
+                  alt="logo"
+                  src={item.urlToImage}
+                />
+              ) : (
+                <Flex justify="center" align="center" style={{ width: "272px", height: "180px", backgroundColor: '#d1d1d1' }}>
+                  <Text>No Image</Text>
+                </Flex>
+              )}
+            >
+              <List.Item.Meta
+                title={item.title}
+                description={item.author}
               />
-            }
-          >
-            <List.Item.Meta
-              title={<a href={item.url}>{item.title}</a>}
-              description={item.author}
-            />
-            <div>
-              {item.description}
-              <Button type="link">Read Detail</Button>
-            </div>
-          </List.Item>
-        )}
+              <div>
+                <div>
+                  {item.description}
+                </div>
+                <Button
+                  type="link"
+                  style={{ padding: '0', marginTop: '8px' }}
+                  onClick={() => {
+                    setShowNewsDetail(true)
+                    setSelectedData(item);
+                  }}
+                >
+                  Read Detail
+                </Button>
+              </div>
+            </List.Item>
+          )}
+        />
+      </MainLayout>
+
+      <NewsModal
+        data={selectedData}
+        isOpen={showNewsDetail}
+        setIsOpen={setShowNewsDetail}
       />
-    </MainLayout>
+    </>
   );
 };
